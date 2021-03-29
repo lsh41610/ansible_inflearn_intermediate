@@ -10,7 +10,10 @@
         content="
           192.168.1.12 server
           192.168.1.13 node01
-          192.168.1.14 node02"
+          192.168.1.14 node02
+          192.168.1.15 node03
+          192.168.1.16 node04
+          192.168.1.17 node05"
 
     - name: Add "/etc/ansible/hosts"
       blockinfile: |
@@ -18,7 +21,15 @@
         content="
           [CentOS]
             node01
-            node02"
+            node02
+            
+          [Ubuntu]
+            node03
+            node04
+
+            [Win]
+            node05 ansible_connection=winrm ansible_ssh_user=vagrant ansible_ssh_port=5985"
+            
     - name: Install sshpass for Authentication
       yum:
         name: sshpass
